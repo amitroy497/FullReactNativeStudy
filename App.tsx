@@ -1,27 +1,22 @@
-import React from 'react';
-import {Button, StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
 
 const App = () => {
-  const pressMe = () => {
-    console.warn('Function called');
-  };
-  const pressMeToo = (val: string) => {
-    console.warn(val);
-  };
+  const [name, setName] = useState<string>('');
   return (
     <View>
       <Text style={[styles.sectionTitle]}>Hello React Native</Text>
-      <Text style={[styles.sectionDescription]}>Start ...</Text>
-      <Button title="Press here" color={'green'} onPress={pressMe} />
-      <Button
-        title="Please press me too"
-        color={'red'}
-        onPress={() => console.warn('Another Function Called')}
+      <Text style={[styles.sectionDescription]}>Name : {name}</Text>
+      <TextInput
+        placeholder="Please enter a name"
+        value={name}
+        onChangeText={text => setName(text)}
+        style={[styles.textInput]}
       />
       <Button
-        title="Press"
+        title="Clear input value"
         color={'#000'}
-        onPress={() => pressMeToo('Hello Amit')}
+        onPress={() => setName('')}
       />
     </View>
   );
@@ -35,6 +30,12 @@ const styles = StyleSheet.create({
   sectionDescription: {
     fontSize: 25,
     fontWeight: '600',
+  },
+  textInput: {
+    fontSize: 18,
+    color: 'blue',
+    borderWidth: 2,
+    borderColor: 'green',
   },
 });
 
